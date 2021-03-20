@@ -1,0 +1,22 @@
+.top-bar {
+  background-color: var(--color-white);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+.top-bar input {
+  border: none;
+  font-size: 1.1em;
+  margin-left: 2em;
+}
+.top-bar .actions {
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+  column-gap: 20px;
+  grid-template-columns: 20px 20px 1fr;
+  margin-right: 50px;
+}
+.top-bar .actions img {
+  filter: grayscale(100%);
+}
