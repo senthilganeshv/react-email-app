@@ -20,3 +20,19 @@
 .top-bar .actions img {
   filter: grayscale(100%);
 }
+.top-bar .logout {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid transparent;
+}
+.top-bar .logout:hover {
+  border: 1px solid var(--color-border-light-grey);
+  background-color: var(--color-button-hover);
+  border-radius: 5px;
+}
+
+.top-bar .logout .logout-icon {
+  margin-right: 10px;
+}
