@@ -34,7 +34,7 @@ export const SideBar = () => {
             </div>
             <ul className={`${activeMenu ? "active-menu" : "nested-menu"}`}>
               <li className="sub-active">
-                <NavLink to="/mail" activeClassName="">
+                <NavLink to="/mail/inbox" activeClassName="">
                   Inbox
                 </NavLink>
               </li>

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useAuth } from "../context/Auth";
+import { useAuth } from "../context/AuthContext";
 
 import "./login.css";
 export const Login = () => {
   const [userLogin, setUserLogin] = useState({});
   const auth = useAuth();
-  console.log(auth);
   if (auth.user && auth.user.isAuthenticated) {
     return <Redirect to="/" />;
   }

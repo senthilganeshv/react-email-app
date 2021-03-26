@@ -7,18 +7,17 @@ const useProvideAuth = () => {
   const [userList] = useLocalStorage("users", users);
 
   const signin = ({ email, password }) => {
-    let user = userList.find(
+    let userInfo = userList.find(
       (user) => user.email === email && user.password === password
     );
-    console.log(user);
-    if (user) {
+    if (userInfo) {
       setUser({
-        email: user.email,
+        email: userInfo.email,
         isAuthenticated: true,
       });
     }
 
-    return user;
+    return userInfo;
   };
   const signout = () => {
     return setUser(false);

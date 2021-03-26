@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route, useLocation } from "react-router-dom";
-import { useAuth } from "../context/Auth";
+import { useAuth } from "../context/AuthContext";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
   const location = useLocation();

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home, Login } from "./screens";
-import { ProvideAuth } from "./context/Auth.js";
+import { ProvideAuth } from "./context/AuthContext";
 
 import "./App.css";
 import { PrivateRoute } from "./components";

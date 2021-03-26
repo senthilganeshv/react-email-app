@@ -1,15 +1,42 @@
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useUserMails } from "../../context/MailsContext";
+
 import "./mail-sidebar.css";
 export const MailSideBar = () => {
+  const [inboxUnreadCount, setInboxUnreadCount] = useState(0);
+  const userMails = useUserMails();
+
+  useEffect(() => {
+    if (userMails.userRequestedMails) {
+      let list = userMails.userRequestedMails.filter(
+        (m) => m.folder === "inbox" && m.isRead === false
+      );
+      setInboxUnreadCount(list.length || 0);
+    }
+  }, [userMails.userRequestedMails]);
   return (
     <div className="mail-sidebar">
       <nav>
         <h3>FOLDERS</h3>
         <ul>
-          <li>Inbox</li>
-          <li>Sent Items</li>
-          <li>Important</li>
-          <li>Drafts</li>
-          <li>Trash</li>
+          <li>
+            <NavLink to="/mail/inbox">
+              Inbox {inboxUnreadCount > 0 && inboxUnreadCount}
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/mail/sent">Sent Items</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mail/important">Important</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mail/drafts">Drafts</NavLink>
+          </li>
+          <li>
+            <NavLink to="/mail/trash">Trash</NavLink>
+          </li>
         </ul>
       </nav>
       <nav>

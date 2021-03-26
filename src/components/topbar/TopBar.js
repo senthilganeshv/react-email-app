@@ -5,7 +5,7 @@ import notificationNone from "../../assets/notifications-none.svg";
 import email from "../../assets/email.svg";
 import emailNone from "../../assets/email-none.svg";
 import logout from "../../assets/logout.svg";
-import { useAuth } from "../../context/Auth";
+import { useAuth } from "../../context/AuthContext";
 
 import "./topbar.css";
 
