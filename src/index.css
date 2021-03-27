@@ -48,8 +48,6 @@ body {
   text-rendering: optimizeLegibility;
   font-weight: 500;
   color: var(--color-text-primary);
-  background-color: var(--color-bg-gray);
-  background-color: #eeeeee;
   min-height: 100%;
 }
 

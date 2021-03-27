@@ -1,5 +1,60 @@
 .mail-sidebar {
   overflow: auto;
-  padding: 30px 0;
-  margin-bottom: 50px;
+  padding-left: 40px;
+  padding-right: 20px;
+  padding-bottom: 50px;
+}
+
+.mail-sidebar .active {
+  font-weight: bold;
+}
+.mail-sidebar nav h3 {
+  margin-bottom: 10px;
+  margin-top: 20px;
+
+  font-size: 1em;
+  letter-spacing: 0.08em;
+}
+.mail-sidebar .folders {
+  display: flex;
+  flex-direction: column;
+}
+.mail-sidebar .folders svg {
+  margin-right: 15px;
+  fill: var(--color-grey-icons);
+}
+.mail-sidebar .folders li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border-light-grey);
+}
+.mail-sidebar .categories li {
+  padding: 6px 0;
+}
+.mail-sidebar .categories li .dot {
+  height: 14px;
+  width: 14px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 15px;
+}
+.mail-sidebar .labels {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mail-sidebar .labels li {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.mail-sidebar .labels li svg {
+  margin-right: 5px;
+  fill: var(--color-grey-icons);
 }

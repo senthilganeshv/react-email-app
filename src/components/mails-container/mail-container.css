@@ -1,0 +1,7 @@
+.mail-container {
+  background-color: var(--color-white);
+  height: 100%;
+  overflow: auto;
+  margin-right: 30px;
+  border: 1px solid var(--color-border);
+}

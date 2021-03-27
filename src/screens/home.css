@@ -1,0 +1,10 @@
+.app {
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .app {
+    display: grid;
+    grid-auto-rows: 100vh;
+    grid-template-columns: 280px 1fr;
+  }
+}

@@ -1,0 +1,12 @@
+.mails {
+  background-color: var(--color-bg-grey);
+  padding: 30px 0;
+}
+@media (min-width: 768px) {
+  .mails {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1;
+    grid-template-columns: 450px 1fr;
+  }
+}

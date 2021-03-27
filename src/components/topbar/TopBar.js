@@ -14,7 +14,20 @@ export const TopBar = () => {
 
   return (
     <div className="top-bar">
-      <img src={menu} className="dashboard-icon" alt="logo" />
+      <div className="dashboard-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="12"
+          viewBox="0 0 20 12"
+        >
+          <path
+            id="ic_dehaze_24px"
+            d="M2,15.5v2H22v-2Zm0-5v2H22v-2Zm0-5v2H22v-2Z"
+            transform="translate(-2 -5.5)"
+          />
+        </svg>
+      </div>
       <input type="text" placeholder="Search for something..." />
       <div className="actions">
         <img

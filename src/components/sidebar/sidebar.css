@@ -17,9 +17,55 @@
 }
 .sidebar ul li {
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.2em;
+}
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  padding-left: 28px;
+}
+.sidebar nav ul li svg {
+  fill: var(--color-menu-inactive);
+  margin-right: 15px;
+  width: 20px;
+}
+.sidebar ul li .active {
+  padding-left: 25px;
+  color: var(--color-white);
+  background-color: var(--color-primary-light);
+  border-left: 3px solid var(--color-green);
+}
+.sidebar ul li .active svg {
+  fill: var(--color-white);
 }
 
+.sidebar .nested-menu {
+  display: none;
+}
+
+.sidebar .active-menu {
+  display: block;
+  padding-bottom: 10px;
+  background-color: var(--color-primary-light);
+  border-left: 3px solid var(--color-green);
+}
+.sidebar .active-menu li {
+  font-size: 0.9em;
+  padding: 5px;
+  padding-left: 50px;
+}
+.sidebar .active-menu li a {
+  padding: 0;
+}
+.sidebar .active-menu li .active {
+  border: none;
+}
+/* .sidebar .active-menu li .active {
+  background-color: var(--color-primary-light);
+} */
+
+/*
 .sidebar ul li a,
 .sidebar ul li div {
   width: 100%;
@@ -38,23 +84,10 @@
   color: var(--color-menu-inactive);
   font-size: 0.9em;
 }
-/* .sidebar .sub-menu ul li {
+ .sidebar .sub-menu ul li {
   padding: 5px 0;
-} */
-
+} 
 .sidebar .sub-menu .sub-active {
   color: var(--color-white);
 }
-
-.sidebar .nested-menu {
-  display: none;
-}
-
-.sidebar .active-menu {
-  display: block;
-}
-.sidebar .active-menu li {
-  height: 20px;
-  font-size: 16px;
-  padding-left: 55px;
-}
+*/
