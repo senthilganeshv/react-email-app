@@ -1,0 +1,32 @@
+.mail-container .mail-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+}
+.mail-container .search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-collapse: collapse;
+}
+.mail-container .search input {
+  padding: 10px 15px;
+  border: 1px solid var(--color-border);
+  border-right: none;
+  width: 225px;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+.mail-container .search input:focus {
+  border: 1px solid var(--color-border);
+  border-right: none;
+}
+.mail-container .search .search-btn {
+  background-color: var(--color-green);
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: var(--color-white);
+  border: 1px solid var(--color-border);
+}

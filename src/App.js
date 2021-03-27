@@ -4,7 +4,13 @@ import { ProvideAuth } from "./context/AuthContext";
 
 import "./App.css";
 import { PrivateRoute } from "./components";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import { categories, labels } from "./data";
+
 const App = () => {
+  useLocalStorage("categories", categories);
+  useLocalStorage("labels", labels);
+
   return (
     <Router>
       <ProvideAuth>

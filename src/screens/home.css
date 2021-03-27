@@ -1,10 +1,22 @@
 .app {
   overflow: hidden;
 }
+
 @media (min-width: 768px) {
   .app {
     display: grid;
     grid-auto-rows: 100vh;
+    grid-template-columns: 80px 1fr;
+  }
+  .menu-text {
+    display: none;
+  }
+}
+@media (min-width: 1200px) {
+  .app {
     grid-template-columns: 280px 1fr;
+  }
+  .menu-text {
+    display: block;
   }
 }

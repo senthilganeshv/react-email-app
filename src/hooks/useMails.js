@@ -5,6 +5,10 @@ import { useAuth } from "../context/AuthContext";
 
 const useMails = () => {
   const [userRequestedMails, setUserRequestedMails] = useState(null);
+  const [inboxTotal, setInboxTotal] = useState(0);
+
+  const [inboxUnreadCount, setInboxUnreadCount] = useState(0);
+
   const [mailList, setMailList] = useLocalStorage("mails", mails);
   const [userMailList, setUserMailList] = useLocalStorage(
     "user-mails",
@@ -12,22 +16,29 @@ const useMails = () => {
   );
   const auth = useAuth();
   useEffect(() => {
-    {
-      let mailsOfUser = userMailList.filter((mail) => {
-        return auth.user.email === mail.email;
+    let mailsOfUser = userMailList.filter((mail) => {
+      return auth.user.email === mail.email;
+    });
+    mailsOfUser.forEach((userMail) => {
+      mailList.forEach((m) => {
+        if (userMail.mailId === m.id) {
+          userMail.mailDetails = m;
+        }
       });
-      mailsOfUser.forEach((userMail) => {
-        mailList.forEach((m) => {
-          if (userMail.mailId === m.id) {
-            userMail.mailDetails = m;
-          }
-        });
-      });
-      setUserRequestedMails(mailsOfUser);
+    });
+    setUserRequestedMails(mailsOfUser);
+  }, [userMailList, auth.user.email, mailList]);
+  useEffect(() => {
+    if (userRequestedMails) {
+      let listInbox = userRequestedMails.filter((m) => m.folder === "inbox");
+      setInboxTotal(listInbox.length || 0);
+      let listInboxUnread = userRequestedMails.filter(
+        (m) => m.folder === "inbox" && m.isRead === false
+      );
+      setInboxUnreadCount(listInboxUnread.length || 0);
     }
-  }, []);
+  }, [userRequestedMails]);
   const readToggle = (id = "") => {
-    console.log(`Mail read ${id}`);
     let modifiedMails = JSON.parse(JSON.stringify(userRequestedMails));
     modifiedMails.forEach((m) => {
       if (m.id === id) {
@@ -44,13 +55,13 @@ const useMails = () => {
         delete m.mailDetails;
       }
     });
-    console.log(modifiedUserMailList);
-    console.log(modifiedMails);
     setUserMailList(modifiedUserMailList);
   };
 
   return {
     userRequestedMails,
+    inboxUnreadCount,
+    inboxTotal,
     readToggle,
   };
 };

@@ -6,6 +6,7 @@
   --color-grey-icons: #3d4d5d;
   --color-border-light-grey: #e7eaec;
   --color-menu-inactive: #a7b1c2;
+  --color-mail-bg: #f9f8f8;
 
   --color-green: #1bb394;
   --color-red: #ed5565;
@@ -14,13 +15,9 @@
   --color-yellow: #f8ac59;
   --color-white: #ffffff;
 
-  --color-text-inactive: #7e8db2;
-  --color-button-hover: #ededed;
   --color-border: #eaeaea;
-  --color-input-bg: #f6f9fe;
   --color-warning: #c22d74;
   --color-success: #06847b;
-  --color-darkbg-text: #f6f9fd;
 }
 * {
   margin: 0;

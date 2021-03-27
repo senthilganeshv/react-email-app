@@ -1,0 +1,36 @@
+.mail-container .mail-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-bottom: 20px;
+}
+.mail-container .mail-actions .actions,
+.mail-container .mail-actions .pagination {
+  display: flex;
+}
+.mail-container .mail-actions .btn {
+  border: 1px solid var(--color-border-light-grey);
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mail-container .mail-actions .btn:hover {
+  background-color: var(--color-border);
+}
+
+.mail-container .mail-actions .btn svg {
+  fill: var(--color-grey-icons);
+}
+.mail-container .mail-actions .pagination .btn:first-child {
+  margin-right: 0px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.mail-container .mail-actions .pagination .btn:last-child {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}

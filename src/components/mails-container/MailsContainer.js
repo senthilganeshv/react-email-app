@@ -3,6 +3,8 @@ import { useUserMails } from "../../context/MailsContext";
 import { useParams } from "react-router";
 import { MailRow } from "../mail-row";
 import "./mail-container.css";
+import { MailHeader } from "./MailHeader";
+import { MailActions } from "./MailActions";
 export const MailsContainer = () => {
   const [mails, setMails] = useState([]);
   const userMails = useUserMails();
@@ -19,7 +21,8 @@ export const MailsContainer = () => {
 
   return (
     <div className="mail-container">
-      <div className="mail-row"></div>
+      <MailHeader folder={mailFolder} count={mails.length} />
+      <MailActions />
       {mails &&
         mails.map((mail) => {
           return (
@@ -29,6 +32,7 @@ export const MailsContainer = () => {
               name={mail.mailDetails.name}
               time={mail.mailDetails.timeStamp}
               subject={mail.mailDetails.subject}
+              isRead={mail.isRead}
             />
           );
         })}

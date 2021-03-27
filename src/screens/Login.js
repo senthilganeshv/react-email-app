@@ -7,7 +7,7 @@ export const Login = () => {
   const [userLogin, setUserLogin] = useState({});
   const auth = useAuth();
   if (auth.user && auth.user.isAuthenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/mail/inbox" />;
   }
   const handleLogin = (event) => {
     event.preventDefault();

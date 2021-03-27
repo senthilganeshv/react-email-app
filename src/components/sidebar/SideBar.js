@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useUserMails } from "../../context/MailsContext";
 
 import "./sidebar.css";
 export const SideBar = () => {
   const [activeMenu, setActiveMenu] = useState(false);
+  const userMails = useUserMails();
 
   return (
     <div className="sidebar">
+      <div className="profile">
+        <div className="avatar">Avatar</div>
+        <div className="profile-info">
+          <span></span>
+          <span></span>
+        </div>
+      </div>
       <nav>
         <ul>
           <li>
@@ -28,7 +37,7 @@ export const SideBar = () => {
                   transform="translate(-4 -4)"
                 />
               </svg>
-              Dashboards
+              <span className="menu-text">Dashboards</span>
             </NavLink>
           </li>
           <li>
@@ -49,13 +58,13 @@ export const SideBar = () => {
                 focusable="false"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                 ></path>
               </svg>
-              Layouts
+              <span className="menu-text">Layouts</span>
             </NavLink>
           </li>
           <li>
@@ -76,7 +85,7 @@ export const SideBar = () => {
                   transform="translate(-1 -6)"
                 />
               </svg>
-              Graphs
+              <span className="menu-text">Graphs</span>
             </NavLink>
           </li>
           <li>
@@ -97,7 +106,12 @@ export const SideBar = () => {
                   transform="translate(-2 -4)"
                 />
               </svg>
-              <span>Mail</span>
+              <span className="menu-text">
+                <span>Mail</span>
+                {userMails.inboxUnreadCount > 0 && (
+                  <span>{`${userMails.inboxUnreadCount}/${userMails.inboxTotal}`}</span>
+                )}
+              </span>
             </NavLink>
             <ul className={`${activeMenu ? "active-menu" : "nested-menu"}`}>
               <li className="sub-active">
@@ -128,7 +142,7 @@ export const SideBar = () => {
                   transform="translate(-2 -2)"
                 />
               </svg>
-              Metrics
+              <span className="menu-text">Metrics</span>
             </NavLink>
           </li>
           <li>
@@ -149,7 +163,7 @@ export const SideBar = () => {
                   transform="translate(-2 -3)"
                 />
               </svg>
-              Widgets
+              <span className="menu-text">Widgets</span>
             </NavLink>
           </li>
           <li>
@@ -178,7 +192,7 @@ export const SideBar = () => {
                   />
                 </g>
               </svg>
-              Forms
+              <span className="menu-text">Forms</span>
             </NavLink>
           </li>
           <li>
@@ -199,7 +213,7 @@ export const SideBar = () => {
                   transform="translate(-1 -2)"
                 />
               </svg>
-              App Views
+              <span className="menu-text">App Views</span>
             </NavLink>
           </li>
         </ul>

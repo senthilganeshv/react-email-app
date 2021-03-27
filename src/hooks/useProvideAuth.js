@@ -3,26 +3,32 @@ import { useLocalStorage } from "./useLocalStorage";
 import { users } from "../data";
 
 const useProvideAuth = () => {
-  const [userInfo] = useLocalStorage("user-info", null);
+  const [userInfo, setUserInfo] = useLocalStorage("user-info");
   const [userList] = useLocalStorage("users", users);
 
   const [user, setUser] = useState(() => userInfo);
+  useEffect(() => {
+    setUser(userInfo);
+  }, [userInfo]);
 
   const signin = ({ email, password }) => {
     let userInfo = userList.find(
       (user) => user.email === email && user.password === password
     );
     if (userInfo) {
-      setUser({
+      let userObj = {
         email: userInfo.email,
         isAuthenticated: true,
-      });
+      };
+      setUser(userObj);
+      setUserInfo(userObj);
     }
-
     return userInfo;
   };
   const signout = () => {
-    return setUser(false);
+    setUser(null);
+    setUserInfo(null);
+    return true;
   };
 
   return {
