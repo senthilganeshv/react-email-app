@@ -5,13 +5,19 @@ import { useAuth } from "../context/AuthContext";
 import "./login.css";
 export const Login = () => {
   const [userLogin, setUserLogin] = useState({});
+  const [error, setError] = useState(null);
   const auth = useAuth();
   if (auth.user && auth.user.isAuthenticated) {
     return <Redirect to="/mail/inbox" />;
   }
   const handleLogin = (event) => {
     event.preventDefault();
-    auth.signin(userLogin);
+    let userInfo = auth.signin(userLogin);
+    console.log(userInfo);
+    if (!userInfo) {
+      console.log("Error");
+      setError("Incorrect email or password");
+    }
   };
   const handleChange = (event) => {
     const target = event.target;
@@ -19,6 +25,7 @@ export const Login = () => {
     const name = target.name;
     setUserLogin({ ...userLogin, [name]: value });
   };
+  console.log(error);
   return (
     <div className="login">
       <div className="container">
@@ -28,6 +35,8 @@ export const Login = () => {
             <span>Sahaj</span>
           </h4>
           <p>Welcome back! Log in to your account </p>
+          {error ? <div className="error"></div> : null}
+
           <div className="label">
             <input
               placeholder="Email"
@@ -37,6 +46,7 @@ export const Login = () => {
               autoComplete="off"
               onChange={handleChange}
               value={userLogin.email || ""}
+              className={error && "error"}
             />
           </div>
           <div className="label">
@@ -50,6 +60,7 @@ export const Login = () => {
               value={userLogin.password || ""}
             />
           </div>
+
           <button type="submit" onClick={handleLogin}>
             Log in
           </button>

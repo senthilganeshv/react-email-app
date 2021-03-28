@@ -35,6 +35,8 @@ export const MailSideBar = () => {
     emailData.timeStamp = moment().toISOString();
     emailData.id = uuid();
     userMails.AddMail(emailData);
+    setModalComposeFlag(false);
+    setEmail("");
   };
 
   const handleDiscard = () => {
