@@ -23,6 +23,7 @@ const useMails = () => {
     let mailsOfUser = userMailList.filter((mail) => {
       return auth.user.email === mail.email;
     });
+    console.log("UseEffect UserRequestedMails");
     mailsOfUser.forEach((userMail) => {
       mailList.forEach((m) => {
         if (userMail.mailId === m.id) {
@@ -64,14 +65,26 @@ const useMails = () => {
     });
     setUserMailList(modifiedUserMailList);
   };
+  const getMail = (id) => {
+    if (userRequestedMails) {
+      let mailSelect = userRequestedMails.find((m) => m.id === id);
+      if (mailSelect) {
+        readToggle([id]);
+      }
+      return mailSelect;
+    }
+  };
 
   const deleteMails = (id = []) => {
     let modifiedUserMailList = JSON.parse(JSON.stringify(userMailList));
-    let listAfterRemoval = modifiedUserMailList.filter((m) => {
-      return !id.includes(m.id);
+    modifiedUserMailList.forEach((m) => {
+      if (id.includes(m.id)) {
+        m.folder = "trash";
+      }
     });
-    setUserMailList(listAfterRemoval);
+    setUserMailList(modifiedUserMailList);
   };
+
   const AddMail = (email) => {
     let mailRefTemplate = {
       id: 1,
@@ -82,6 +95,7 @@ const useMails = () => {
       isStarred: false,
       labels: [],
       categories: [],
+      timeStamp: email.timeStamp,
     };
 
     let mails = JSON.parse(JSON.stringify(mailList));
@@ -113,6 +127,7 @@ const useMails = () => {
     readToggle,
     deleteMails,
     AddMail,
+    getMail,
   };
 };
 

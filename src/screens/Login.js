@@ -21,7 +21,7 @@ export const Login = () => {
   };
   return (
     <div className="login">
-      <div className="session">
+      <div className="container">
         <div className="left"></div>
         <form className="log-in" autoComplete="off">
           <h4>

@@ -73,3 +73,8 @@ button {
 button:focus {
   outline: none;
 }
+input,
+textarea {
+  border: none;
+  outline: none;
+}

@@ -16,6 +16,10 @@ export const Home = () => {
             <Route path="/mail/">
               <Mails />
             </Route>
+            <Route path="*">
+              <div>Sorry, looks like you took the wrong way.</div>
+              <div>Let us guide you back!</div>
+            </Route>
           </Switch>
         </main>
       </div>

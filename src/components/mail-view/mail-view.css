@@ -1,0 +1,33 @@
+.mail-view {
+  background-color: var(--color-white);
+  height: 100%;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  padding-bottom: 100px;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.mail-view .mail-from {
+  font-weight: bold;
+}
+.mail-view .mail-subject {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.mail-view .mail-first-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.mail-view .mail-view-right {
+  display: flex;
+}
+.mail-view .mail-view-right div {
+  margin-right: 20px;
+}
+.mail-view .btn-back {
+  cursor: pointer;
+}

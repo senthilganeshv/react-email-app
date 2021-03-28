@@ -6,6 +6,8 @@ import "./mail-row.css";
 export const MailRow = ({
   id,
   name,
+  to,
+  folder,
   categories = [],
   subject,
   time,
@@ -29,21 +31,21 @@ export const MailRow = ({
     );
   };
   return (
-    <div className={`mail-row ${isRead ? "" : "unread"}`}>
+    <div className={`mail-row ${isRead ? "read-mail" : "unread-mail"}`}>
       <label className="checkbox">
         <input type="checkbox" onChange={onSelect} />
         <span className="checkmark"></span>
       </label>
       <div className="mail-summary" onClick={event}>
         <div className="name">
-          <div>{name}</div>
+          <div>{folder === "sent" ? to : name}</div>
           <div className="categories">
             <CategoryBox />
           </div>
         </div>
         <div className="time">
           {moment(time).isSame(moment(), "day")
-            ? moment(time).format("hh:mm A")
+            ? moment(time).format("h:mm A")
             : moment(time).format("MMM D")}
         </div>
         <div className="subject">{subject}</div>

@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: 30px 1fr;
   grid-template-rows: 1fr;
-  border-top: 1px solid var(--color-border-light-grey);
   border-bottom: 1px solid var(--color-border-light-grey);
   cursor: pointer;
 }
@@ -13,11 +12,11 @@
   grid-template-rows: minmax(30px, auto) 1fr;
 }
 .mail-row .mail-summary .name {
-  font-weight: bold;
   display: flex;
   justify-content: space-between;
   padding-right: 15px;
 }
+
 .mail-row .mail-summary .time {
   display: flex;
   justify-content: flex-end;
@@ -52,6 +51,10 @@
   }
 }
 
-.unread {
+.read-mail {
   background-color: var(--color-mail-bg);
+}
+
+.unread-mail {
+  font-weight: bold;
 }

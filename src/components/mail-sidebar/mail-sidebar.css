@@ -35,11 +35,19 @@
   fill: var(--color-grey-icons);
 }
 .mail-sidebar .folders li {
+  width: 100%;
   padding: 6px 0;
+
   border-bottom: 1px solid var(--color-border-light-grey);
+}
+.mail-sidebar .folders li:first-child a {
   display: flex;
   justify-content: space-between;
 }
+.mail-sidebar .folders li:hover {
+  background-color: var(--color-border-light-grey);
+}
+
 .mail-sidebar .folders li .count {
   background-color: var(--color-yellow);
   padding: 0px 12px;
@@ -82,5 +90,29 @@
 .mail-sidebar .compose-email {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
+}
+
+.mail-sidebar .compose-email label {
+  margin-top: 15px;
+  margin-bottom: 2px;
+}
+.mail-sidebar .compose-email input {
+  border: none;
+  border-bottom: 1px solid var(--color-green);
+  background-color: transparent;
+  padding: 0px 5px;
+  height: 25px;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+}
+.mail-sidebar .compose-email textarea {
+  border: none;
+  border: 1px solid var(--color-green);
+  border-radius: 5px;
+  outline: none;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 10px;
 }

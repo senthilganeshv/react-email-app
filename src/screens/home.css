@@ -1,5 +1,6 @@
 .app {
   overflow: hidden;
+  background-color: var(--color-bg-grey);
 }
 
 @media (min-width: 768px) {

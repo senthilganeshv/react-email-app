@@ -1,7 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import { MailSideBar, MailsContainer } from "../components";
-import { MailView } from "../components/mails-container/MailView";
+import { MailView } from "../components/mail-view";
 
 import "./mails.css";
 export const Mails = () => {
@@ -17,6 +17,11 @@ export const Mails = () => {
         </Route>
         <Route path="/mail/">
           <Redirect to="/mail/inbox" />
+        </Route>
+
+        <Route path="*">
+          <div>Sorry, looks like you took the wrong way.</div>
+          <div>Let us guid you back!</div>
         </Route>
       </Switch>
     </div>

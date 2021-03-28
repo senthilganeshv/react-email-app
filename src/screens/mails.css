@@ -11,7 +11,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .mails {
     grid-template-columns: 450px 1fr;
   }
