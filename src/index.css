@@ -18,6 +18,7 @@
   --color-border: #eaeaea;
   --color-warning: #c22d74;
   --color-success: #06847b;
+  --color-darkbg-text: #f6f9fd;
 }
 * {
   margin: 0;

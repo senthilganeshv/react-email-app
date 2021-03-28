@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useUserMails } from "../../context/MailsContext";
+import { useAuth } from "../../context/AuthContext";
 
 import "./sidebar.css";
 export const SideBar = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const userMails = useUserMails();
-
+  const auth = useAuth();
+  console.log(auth);
   return (
     <div className="sidebar">
       <div className="profile">
         <div className="avatar">Avatar</div>
         <div className="profile-info">
-          <span></span>
-          <span></span>
+          <span>{`${auth.user.name}`}</span>
+          <span>{`${auth.user.role}`}</span>
         </div>
       </div>
       <nav>

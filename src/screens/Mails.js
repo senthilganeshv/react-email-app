@@ -1,6 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { MailSideBar, MailsContainer, ComposeEmail } from "../components";
+import { MailSideBar, MailsContainer } from "../components";
+import { MailView } from "../components/mails-container/MailView";
 
 import "./mails.css";
 export const Mails = () => {
@@ -8,11 +9,11 @@ export const Mails = () => {
     <div className="mails">
       <MailSideBar />
       <Switch>
+        <Route path="/mail/view/:id">
+          <MailView />
+        </Route>
         <Route path="/mail/:mailFolder">
           <MailsContainer />
-        </Route>
-        <Route path="/mail/compose">
-          <ComposeEmail />
         </Route>
         <Route path="/mail/">
           <Redirect to="/mail/inbox" />

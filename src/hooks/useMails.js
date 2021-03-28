@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import uuid from "react-uuid";
+import moment from "moment";
+
 import { useLocalStorage } from "./useLocalStorage";
 import { mails, userMails } from "../data";
 import { useAuth } from "../context/AuthContext";
@@ -15,6 +18,7 @@ const useMails = () => {
     userMails
   );
   const auth = useAuth();
+
   useEffect(() => {
     let mailsOfUser = userMailList.filter((mail) => {
       return auth.user.email === mail.email;
@@ -26,8 +30,12 @@ const useMails = () => {
         }
       });
     });
+    mailsOfUser.sort((a, b) => {
+      return moment(b.timeStamp).diff(a.timeStamp);
+    });
     setUserRequestedMails(mailsOfUser);
   }, [userMailList, auth.user.email, mailList]);
+
   useEffect(() => {
     if (userRequestedMails) {
       let listInbox = userRequestedMails.filter((m) => m.folder === "inbox");
@@ -38,19 +46,18 @@ const useMails = () => {
       setInboxUnreadCount(listInboxUnread.length || 0);
     }
   }, [userRequestedMails]);
-  const readToggle = (id = "") => {
-    let modifiedMails = JSON.parse(JSON.stringify(userRequestedMails));
-    modifiedMails.forEach((m) => {
-      if (m.id === id) {
-        m.isRead = !m.isRead;
-      }
-    });
-    setUserRequestedMails(modifiedMails);
 
+  const readToggle = (id = [], toggle = false) => {
     let modifiedUserMailList = JSON.parse(JSON.stringify(userMailList));
     modifiedUserMailList.forEach((m) => {
-      if (m.id === id && m.email === auth.user.email) {
-        m.isRead = !m.isRead;
+      if (id.includes(m.id) && m.email === auth.user.email) {
+        if (toggle) {
+          m.isRead = !m.isRead;
+        } else {
+          if (!m.isRead) {
+            m.isRead = !m.isRead;
+          }
+        }
 
         delete m.mailDetails;
       }
@@ -58,11 +65,54 @@ const useMails = () => {
     setUserMailList(modifiedUserMailList);
   };
 
+  const deleteMails = (id = []) => {
+    let modifiedUserMailList = JSON.parse(JSON.stringify(userMailList));
+    let listAfterRemoval = modifiedUserMailList.filter((m) => {
+      return !id.includes(m.id);
+    });
+    setUserMailList(listAfterRemoval);
+  };
+  const AddMail = (email) => {
+    let mailRefTemplate = {
+      id: 1,
+      email: auth.user.email,
+      mailId: 1,
+      isRead: false,
+      folder: "sent",
+      isStarred: false,
+      labels: [],
+      categories: [],
+    };
+
+    let mails = JSON.parse(JSON.stringify(mailList));
+    setMailList([...mails, email]);
+
+    let modifiedUserMailList = JSON.parse(JSON.stringify(userMailList));
+    let senderRef = { ...mailRefTemplate };
+    senderRef.id = uuid();
+    senderRef.mailId = email.id;
+    senderRef.isRead = true;
+
+    let toRef = { ...mailRefTemplate };
+    toRef.id = uuid();
+    toRef.email = email.to;
+    toRef.mailId = email.id;
+    toRef.folder = "inbox";
+
+    let ccRef = { ...mailRefTemplate };
+    ccRef.id = uuid();
+    ccRef.email = email.cc;
+    ccRef.mailId = email.id;
+    ccRef.folder = "inbox";
+    setUserMailList([...modifiedUserMailList, senderRef, toRef, ccRef]);
+  };
   return {
     userRequestedMails,
     inboxUnreadCount,
     inboxTotal,
     readToggle,
+    deleteMails,
+    AddMail,
   };
 };
 

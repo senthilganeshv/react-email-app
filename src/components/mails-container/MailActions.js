@@ -1,5 +1,5 @@
 import "./mail-actions.css";
-export const MailActions = () => {
+export const MailActions = ({ readToggle, mailsDelete }) => {
   return (
     <div className="mail-actions">
       <div className="actions">
@@ -19,7 +19,7 @@ export const MailActions = () => {
           </svg>
           &nbsp; Refresh
         </div>
-        <div className="btn">
+        <div className="btn" onClick={readToggle}>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -49,7 +49,7 @@ export const MailActions = () => {
             ></path>
           </svg>
         </div>
-        <div className="btn">
+        <div className="btn" onClick={mailsDelete}>
           <svg
             aria-hidden="true"
             focusable="false"

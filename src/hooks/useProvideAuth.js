@@ -17,6 +17,8 @@ const useProvideAuth = () => {
     );
     if (userInfo) {
       let userObj = {
+        name: `${userInfo.firstName} ${userInfo.lastName}`,
+        role: userInfo.role,
         email: userInfo.email,
         isAuthenticated: true,
       };

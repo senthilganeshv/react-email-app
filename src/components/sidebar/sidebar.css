@@ -11,6 +11,10 @@
   height: 200px;
   background-color: var(--color-primary-light);
 }
+.sidebar .profile-info {
+  display: flex;
+  flex-direction: column;
+}
 .sidebar nav {
   width: 100%;
 }

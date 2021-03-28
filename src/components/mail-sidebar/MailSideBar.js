@@ -1,18 +1,62 @@
 import { NavLink } from "react-router-dom";
+import moment from "moment";
+import uuid from "react-uuid";
+
+import { useAuth } from "../../context/AuthContext";
+
 import { useUserMails } from "../../context/MailsContext";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 import { categories, labels } from "../../data";
+import { Modal } from "../../components";
 
 import "./mail-sidebar.css";
-import { useEffect } from "react";
+import { useState } from "react";
+
 export const MailSideBar = () => {
   const userMails = useUserMails();
+  const auth = useAuth();
+
+  const [modalComposeFlag, setModalComposeFlag] = useState(false);
+  const [email, setEmail] = useState([]);
   const [categoriesList] = useLocalStorage("categories", categories);
   const [labelsList] = useLocalStorage("labels", labels);
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    setEmail({ ...email, [name]: value });
+  };
+  const handleSendEmail = () => {
+    // id: 3,
+    // from: "johndoe@gmail.com",
+    // name: "John Doe",
+    // to: ["senthil@gmail.com"],
+    // cc: [],
+    // subject: "Regarding Quote for a new web design ",
+    // hasAttachment: false,
+    // body: "Hey Senthil, Please find the quote for the new web design",
+    // timeStamp: "2021-03-25T02:22:15.301Z",
+    let emailData = { ...email };
+    emailData.from = auth.user.email;
+    emailData.name = auth.user.name;
+    emailData.hasAttachment = false;
+    emailData.timeStamp = moment().toISOString();
+    emailData.id = uuid();
+    userMails.AddMail(emailData);
+    console.log(emailData);
+  };
+
+  const handleDiscard = () => {
+    setModalComposeFlag(false);
+    setEmail("");
+  };
 
   return (
     <div className="mail-sidebar">
-      <div className="compose">Compose Mail</div>
+      <div className="compose" onClick={() => setModalComposeFlag(true)}>
+        Compose Mail
+      </div>
       <nav>
         <h3>FOLDERS</h3>
         <ul className="folders">
@@ -150,6 +194,63 @@ export const MailSideBar = () => {
           })}
         </ul>
       </nav>
+      <Modal
+        show={modalComposeFlag}
+        buttons={[
+          {
+            name: "Discard",
+            func: handleDiscard,
+            cssClass: "modal-back",
+          },
+          {
+            name: "Save as draft ",
+            func: () => console.log("Delete"),
+            cssClass: "modal-back",
+          },
+          {
+            name: "Send Email",
+            func: handleSendEmail,
+            cssClass: "modal-success",
+          },
+        ]}
+        header="New Email"
+      >
+        <div className="compose-email">
+          <label htmlFor="to">To</label>
+          <input
+            type="text"
+            id="to"
+            name="to"
+            onChange={handleChange}
+            value={email.to || ""}
+          />
+          <label htmlFor="cc">CC</label>
+          <input
+            type="text"
+            id="cc"
+            name="cc"
+            onChange={handleChange}
+            value={email.cc || ""}
+          />
+          <label htmlFor="subject">Subject</label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            onChange={handleChange}
+            value={email.subject || ""}
+          />
+          <label htmlFor="body">body</label>
+          <textarea
+            id="body"
+            name="body"
+            rows="4"
+            cols="50"
+            onChange={handleChange}
+            value={email.body || ""}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };
