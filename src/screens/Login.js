@@ -20,6 +20,7 @@ export const Login = () => {
     }
   };
   const handleChange = (event) => {
+    setError(false);
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -35,7 +36,6 @@ export const Login = () => {
             <span>Sahaj</span>
           </h4>
           <p>Welcome back! Log in to your account </p>
-          {error ? <div className="error"></div> : null}
 
           <div className="label">
             <input
@@ -46,7 +46,6 @@ export const Login = () => {
               autoComplete="off"
               onChange={handleChange}
               value={userLogin.email || ""}
-              className={error && "error"}
             />
           </div>
           <div className="label">
@@ -60,6 +59,7 @@ export const Login = () => {
               value={userLogin.password || ""}
             />
           </div>
+          {error ? <div className="error">{error}</div> : null}
 
           <button type="submit" onClick={handleLogin}>
             Log in

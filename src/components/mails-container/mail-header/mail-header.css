@@ -1,13 +1,16 @@
 .mail-container .mail-header {
   display: flex;
   justify-content: space-between;
-  padding: 30px 20px;
+  padding: 20px 20px;
 }
 .mail-container .search {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   border-collapse: collapse;
+}
+.mail-container .mail-folder-title {
+  font-size: 1.4em;
 }
 .mail-container .search input {
   padding: 10px 15px;

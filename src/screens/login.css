@@ -122,5 +122,5 @@
   margin: 20px;
 }
 .login .error {
-  border-bottom: solid 1px var(--color-warning);
+  color: var(--color-warning);
 }
