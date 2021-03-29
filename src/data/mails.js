@@ -17,7 +17,7 @@ export const mails = [
     to: ["senthil@gmail.com"],
     cc: [],
     subject: "Quote for a new web design project ",
-    hasAttachment: false,
+    hasAttachment: true,
     body: "Hey Senthil, Please find the quote for the new web design",
     timeStamp: "2021-03-25T02:22:15.301Z",
   },

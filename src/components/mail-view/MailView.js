@@ -45,8 +45,6 @@ export const MailView = () => {
               width="16px"
               height="16px"
               viewBox="0 0 1024 1024"
-              width="1em"
-              height="1em"
               fill="currentColor"
             >
               <path

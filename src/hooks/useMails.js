@@ -23,7 +23,6 @@ const useMails = () => {
     let mailsOfUser = userMailList.filter((mail) => {
       return auth.user.email === mail.email;
     });
-    console.log("UseEffect UserRequestedMails");
     mailsOfUser.forEach((userMail) => {
       mailList.forEach((m) => {
         if (userMail.mailId === m.id) {

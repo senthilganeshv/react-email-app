@@ -39,6 +39,10 @@
   .sidebar .profile .profile-role {
     font-size: 0.9em;
   }
+  .sidebar .profile .profile-role svg {
+    fill: #8095a8;
+    margin-left: 5px;
+  }
   .sidebar .collapsed-content {
     display: none;
   }
@@ -72,10 +76,22 @@
   background-color: var(--color-yellow);
   font-size: 0.8em;
   border-radius: 5px;
+  color: var(--color-white);
 }
 .sidebar ul li a div {
   display: flex;
 }
+@media (max-width: 1199px) {
+  .sidebar ul li a .arrow {
+    display: none;
+  }
+}
+@media (min-width: 1199px) {
+  .sidebar ul li a .arrow svg {
+    fill: var(--color-menu-inactive);
+  }
+}
+
 .sidebar nav ul li svg {
   fill: var(--color-menu-inactive);
   margin-right: 15px;

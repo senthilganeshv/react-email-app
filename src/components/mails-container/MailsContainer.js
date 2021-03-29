@@ -74,6 +74,7 @@ export const MailsContainer = () => {
                 to={mail.mailDetails.to}
                 time={mail.mailDetails.timeStamp}
                 subject={mail.mailDetails.subject}
+                attachment={mail.mailDetails.hasAttachment}
                 isRead={mail.isRead}
                 categories={mail.categories}
                 folder={mailFolder}

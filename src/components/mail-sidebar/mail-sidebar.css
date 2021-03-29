@@ -94,8 +94,13 @@
 }
 
 .mail-sidebar .compose-email label {
+  display: flex;
+  justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 2px;
+}
+.mail-sidebar .compose-email label .error {
+  color: var(--color-red);
 }
 .mail-sidebar .compose-email input {
   border: none;

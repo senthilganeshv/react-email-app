@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 import "./login.css";
 export const Login = () => {
-  const [userLogin, setUserLogin] = useState({});
+  const [userLogin, setUserLogin] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
   const auth = useAuth();
   if (auth.user && auth.user.isAuthenticated) {
@@ -12,21 +12,26 @@ export const Login = () => {
   }
   const handleLogin = (event) => {
     event.preventDefault();
-    let userInfo = auth.signin(userLogin);
-    console.log(userInfo);
-    if (!userInfo) {
-      console.log("Error");
-      setError("Incorrect email or password");
+    let data = { ...userLogin };
+    if (data.email !== "") {
+      data.email = String(data.email).toLowerCase();
+    }
+    if (data.email !== "" && data.password !== "") {
+      let userInfo = auth.signin(data);
+      if (!userInfo) {
+        setError("Incorrect email or password.");
+      }
+    } else {
+      setError("Please enter required fields.");
     }
   };
   const handleChange = (event) => {
     setError(false);
     const target = event.target;
-    const value = target.value;
+    let value = target.value;
     const name = target.name;
     setUserLogin({ ...userLogin, [name]: value });
   };
-  console.log(error);
   return (
     <div className="login">
       <div className="container">
@@ -59,7 +64,7 @@ export const Login = () => {
               value={userLogin.password || ""}
             />
           </div>
-          {error ? <div className="error">{error}</div> : null}
+          <div className="error">{error ? error : " "}</div>
 
           <button type="submit" onClick={handleLogin}>
             Log in

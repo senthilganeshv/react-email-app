@@ -21,7 +21,21 @@ export const SideBar = () => {
           </div>
           <div className="profile-info">
             <span className="profile-name">{`${auth.user.name}`}</span>
-            <span className="profile-role">{`${auth.user.role}`}</span>
+            <span className="profile-role">
+              {`${auth.user.role}`}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="5"
+                viewBox="0 0 10 5"
+              >
+                <path
+                  id="ic_arrow_drop_down_24px"
+                  d="M7,10l5,5,5-5Z"
+                  transform="translate(-7 -10)"
+                />
+              </svg>
+            </span>
           </div>
         </div>
         <div className="collapsed-content">IN+</div>
@@ -50,6 +64,20 @@ export const SideBar = () => {
                   />
                 </svg>
                 <span className="menu-text">Dashboards</span>
+              </div>
+              <div className="arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7.41"
+                  height="10"
+                  viewBox="0 0 7.41 12"
+                >
+                  <path
+                    id="ic_chevron_left_24px"
+                    d="M15.41,7.41,14,6,8,12l6,6,1.41-1.41L10.83,12Z"
+                    transform="translate(-8 -6)"
+                  />
+                </svg>
               </div>
             </NavLink>
           </li>
@@ -102,6 +130,20 @@ export const SideBar = () => {
                   />
                 </svg>
                 <span className="menu-text">Graphs</span>
+              </div>
+              <div className="arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7.41"
+                  height="10"
+                  viewBox="0 0 7.41 12"
+                >
+                  <path
+                    id="ic_chevron_left_24px"
+                    d="M15.41,7.41,14,6,8,12l6,6,1.41-1.41L10.83,12Z"
+                    transform="translate(-8 -6)"
+                  />
+                </svg>
               </div>
             </NavLink>
           </li>
@@ -217,6 +259,20 @@ export const SideBar = () => {
                   </g>
                 </svg>
                 <span className="menu-text">Forms</span>
+              </div>
+              <div className="arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7.41"
+                  height="10"
+                  viewBox="0 0 7.41 12"
+                >
+                  <path
+                    id="ic_chevron_left_24px"
+                    d="M15.41,7.41,14,6,8,12l6,6,1.41-1.41L10.83,12Z"
+                    transform="translate(-8 -6)"
+                  />
+                </svg>
               </div>
             </NavLink>
           </li>

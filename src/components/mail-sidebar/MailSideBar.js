@@ -18,9 +18,10 @@ export const MailSideBar = () => {
   const auth = useAuth();
 
   const [modalComposeFlag, setModalComposeFlag] = useState(false);
-  const [email, setEmail] = useState([]);
+  const [email, setEmail] = useState({ to: "" });
   const [categoriesList] = useLocalStorage("categories", categories);
   const [labelsList] = useLocalStorage("labels", labels);
+  const [error, setError] = useState("");
   const handleChange = (event) => {
     const target = event.target;
     const value = target.value;
@@ -29,19 +30,33 @@ export const MailSideBar = () => {
   };
   const handleSendEmail = () => {
     let emailData = { ...email };
+    let err = validateEmail(emailData.to);
+    setError(err);
     emailData.from = auth.user.email;
     emailData.name = auth.user.name;
     emailData.hasAttachment = false;
     emailData.timeStamp = moment().toISOString();
     emailData.id = uuid();
-    userMails.AddMail(emailData);
-    setModalComposeFlag(false);
-    setEmail("");
+    if (err === "") {
+      userMails.AddMail(emailData);
+      setModalComposeFlag(false);
+      setEmail("");
+    }
   };
 
   const handleDiscard = () => {
     setModalComposeFlag(false);
     setEmail("");
+  };
+
+  const validateEmail = (email) => {
+    if (!email || email === "") {
+      return "Please specify at least one recipient.";
+    }
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase())
+      ? ""
+      : "Please enter valid email address.";
   };
 
   return (
@@ -217,7 +232,9 @@ export const MailSideBar = () => {
         header="New Email"
       >
         <div className="compose-email">
-          <label htmlFor="to">To</label>
+          <label htmlFor="to">
+            To * {error !== "" && <div className="error">{error}</div>}
+          </label>
           <input
             type="text"
             id="to"

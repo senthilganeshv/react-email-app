@@ -26,18 +26,34 @@ export const TopBar = () => {
       <input type="text" placeholder="Search for something..." />
       <div className="actions">
         <div className="mail">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="16"
-            viewBox="0 0 20 16"
-          >
-            <path
-              id="ic_email_24px"
-              d="M20,4H4A2,2,0,0,0,2.01,6L2,18a2.006,2.006,0,0,0,2,2H20a2.006,2.006,0,0,0,2-2V6A2.006,2.006,0,0,0,20,4Zm0,4-8,5L4,8V6l8,5,8-5Z"
-              transform="translate(-2 -4)"
-            />
-          </svg>
+          {userMails && userMails.inboxUnreadCount > 0 ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="16"
+              viewBox="0 0 20 16"
+            >
+              <path
+                id="ic_email_24px"
+                d="M20,4H4A2,2,0,0,0,2.01,6L2,18a2.006,2.006,0,0,0,2,2H20a2.006,2.006,0,0,0,2-2V6A2.006,2.006,0,0,0,20,4Zm0,4-8,5L4,8V6l8,5,8-5Z"
+                transform="translate(-2 -4)"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="16"
+              viewBox="0 0 20 16"
+            >
+              <path
+                id="ic_mail_outline_24px"
+                d="M20,4H4A2,2,0,0,0,2.01,6L2,18a2.006,2.006,0,0,0,2,2H20a2.006,2.006,0,0,0,2-2V6A2.006,2.006,0,0,0,20,4Zm0,14H4V8l8,5,8-5Zm-8-7L4,6H20Z"
+                transform="translate(-2 -4)"
+              />
+            </svg>
+          )}
+
           {userMails && userMails.inboxUnreadCount > 0 && (
             <span className="count">{userMails.inboxUnreadCount}</span>
           )}
